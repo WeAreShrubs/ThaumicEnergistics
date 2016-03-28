@@ -526,12 +526,13 @@ public abstract class ThEPartBase
 		return true;
 	}
 
-	@Override
-	public boolean isPowered()
-	{
-		// Server side?
-		if( EffectiveSide.isServerSide() )
-		{
+        @Override
+        public boolean isPowered()
+        {
++           try {
+                // Server side?
+                if( EffectiveSide.isServerSide() )
+                {
 			// Get the energy grid
 			IEnergyGrid eGrid = this.gridBlock.getEnergyGrid();
 			if( eGrid != null )
@@ -540,12 +541,15 @@ public abstract class ThEPartBase
 			}
 			else
 			{
-				this.isPowered = false;
-			}
-		}
-
-		return this.isPowered;
-	}
+                                this.isPowered = false;
+                        }
+                }
+-
++           } catch(Exception e) {}
++           finally {
+                return this.isPowered;
++           }
+        }
 
 	@Override
 	public int isProvidingStrongPower()
