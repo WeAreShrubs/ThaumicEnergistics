@@ -529,26 +529,23 @@ public abstract class ThEPartBase
         @Override
         public boolean isPowered()
         {
-+           try {
+            try {
                 // Server side?
-                if( EffectiveSide.isServerSide() )
-                {
+                if( EffectiveSide.isServerSide() ) {
 			// Get the energy grid
 			IEnergyGrid eGrid = this.gridBlock.getEnergyGrid();
 			if( eGrid != null )
 			{
 				this.isPowered = eGrid.isNetworkPowered();
 			}
-			else
-			{
+			else {
                                 this.isPowered = false;
                         }
                 }
--
-+           } catch(Exception e) {}
-+           finally {
+            } catch(Exception e) {}
+            finally {
                 return this.isPowered;
-+           }
+            }
         }
 
 	@Override
